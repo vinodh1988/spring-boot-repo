@@ -7,6 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+  <h1>Spring boot MVC works</h1>
+  <h3><u>Programmers</u></h3>
+  <ul>
+  <%
+  String[] names=(String[])request.getAttribute("names");
+  for(String x:names){
+  %>
+  <li><%=x %></li>
+  <%} %>
+  </ul>
 </body>
 </html>
