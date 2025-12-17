@@ -28,7 +28,10 @@ public List<Person> getPeople() {
 	return people;
 }
 
+public void addPerson(Person person) {
+	people.add(person);
+}
 
-  
-  
+
+
 }
