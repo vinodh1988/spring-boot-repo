@@ -18,4 +18,8 @@ public class ComputerService {
 		return crepo.findAll();
 	}
 	
+	
+	public void addComputer(Computer c) {
+		crepo.save(c); //upsert
+	}
 }
