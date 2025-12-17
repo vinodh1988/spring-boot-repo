@@ -17,5 +17,8 @@
   <li><%=x %></li>
   <%} %>
   </ul>
+  
+  <h3>Session Scope Data <%= request.getAttribute("sdata") %></h3>
+  <h3>Application Scope Data <%= request.getAttribute("adata") %></h3>
 </body>
 </html>
