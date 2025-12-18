@@ -24,10 +24,21 @@ public class ComputerAPI {
    public List<Computer> getComputers() {
 	   return cservice.getComputers();
    }
-   
+  
    @PostMapping
    public ResponseEntity<Object> addComputer(@RequestBody Computer computer)
+   throws RecordAlreadyExistsException
    {
+      cservice.addComputer(computer);
+      return  new ResponseEntity<>(computer,HttpStatus.CREATED);
+   }
+}
+
+
+/*
+@PostMapping
+public ResponseEntity<Object> addComputer(@RequestBody Computer computer)
+{
 	   try {
 		   cservice.addComputer(computer);
 		   return new ResponseEntity<>(computer,HttpStatus.CREATED);
@@ -38,6 +49,4 @@ public class ComputerAPI {
 	   catch(Exception e) {
 		   return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	   }
-   }
-   
-}
+}*/
