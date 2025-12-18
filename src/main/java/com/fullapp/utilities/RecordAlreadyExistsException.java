@@ -13,6 +13,6 @@ public class RecordAlreadyExistsException extends Exception {
      }
      
      public String getMessage() {
-    	 return this.getMessage();
+    	 return toString();
      }
 }

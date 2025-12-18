@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fullapp.entities.Computer;
 import com.fullapp.services.ComputerService;
+import com.fullapp.utilities.RecordAlreadyExistsException;
 
 @RestController
 @RequestMapping("/api/computers")
@@ -30,6 +31,9 @@ public class ComputerAPI {
 	   try {
 		   cservice.addComputer(computer);
 		   return new ResponseEntity<>(computer,HttpStatus.CREATED);
+	   }
+	   catch(RecordAlreadyExistsException e) {
+		   return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
 	   }
 	   catch(Exception e) {
 		   return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
