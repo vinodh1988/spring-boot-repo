@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.fullapp.entities.Computer;
 import com.fullapp.repositories.ComputerRepository;
 import com.fullapp.utilities.RecordAlreadyExistsException;
+import com.fullapp.utilities.RecordNotFoundException;
 
 @Service
 public class ComputerService {
@@ -19,11 +20,25 @@ public class ComputerService {
 		return crepo.findAll();
 	}
 	
+	public Computer getComputer(int cno) throws RecordNotFoundException {
+		Computer computer = crepo.findByCno(cno);
+		if(computer==null)
+			throw new RecordNotFoundException();
+		return computer;
+	}
+	
 	
 	public void addComputer(Computer c) throws RecordAlreadyExistsException {
 	   Computer computer= crepo.findByCno(c.getCno());
 	   if(computer!=null)
 		   throw new RecordAlreadyExistsException();
 		crepo.save(c); 
+	}
+	
+	public void deleteComputer(Integer cno) throws RecordNotFoundException {
+		Computer computer = crepo.findByCno(cno);
+		if(computer==null)
+			throw new RecordNotFoundException();
+		crepo.delete(computer);
 	}
 }
