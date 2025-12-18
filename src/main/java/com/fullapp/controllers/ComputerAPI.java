@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fullapp.entities.Computer;
@@ -49,6 +50,13 @@ public class ComputerAPI {
    {
 	   cservice.deleteComputer(cno);
 	   return new ResponseEntity<>("record deleted",HttpStatus.OK);
+   }
+   @RequestMapping(value="",method = {RequestMethod.PUT,RequestMethod.PATCH})
+   public ResponseEntity<Object> updateComputer(@RequestBody Computer computer)
+   throws RecordNotFoundException
+   {
+	   cservice.updateComputer(computer);
+	   return new  ResponseEntity<>(computer,HttpStatus.OK);
    }
 }
 
