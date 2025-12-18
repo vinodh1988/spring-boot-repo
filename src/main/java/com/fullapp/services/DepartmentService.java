@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fullapp.entities.Department;
+import com.fullapp.entities.Employee;
 import com.fullapp.repositories.DepartmentRepository;
 
 @Service
@@ -16,5 +17,12 @@ public class DepartmentService {
 	 
 	 public List<Department> getDepartments(){
 		 return drepo.findAll();
+	 }
+	 
+	 public void addDepartment(Department d) {
+		 for(Employee x:d.getEmployees()) {
+			 x.setDept(d);
+		 }
+		 drepo.save(d);
 	 }
 }
