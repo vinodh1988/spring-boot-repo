@@ -18,19 +18,22 @@ public class Computer {
    private String cpu;
 @Column
    private String storage;
+@Column
+   private Integer price;
 
    public Computer() {
 	super();
 	// TODO Auto-generated constructor stub
    }
 
-   public Computer(Integer cno, String brand, String ram, String cpu, String storage) {
+   public Computer(Integer cno, String brand, String ram, String cpu, String storage,Integer price) {
 	super();
 	this.cno = cno;
 	this.brand = brand;
 	this.ram = ram;
 	this.cpu = cpu;
 	this.storage = storage;
+	this.price=price;
    }
 
    public Integer getCno() {
@@ -72,6 +75,16 @@ public class Computer {
    public void setStorage(String storage) {
 	this.storage = storage;
    }
+
+   public Integer getPrice() {
+	return price;
+   }
+
+   public void setPrice(Integer price) {
+	this.price = price;
+   }
+   
+   
    
    
 }

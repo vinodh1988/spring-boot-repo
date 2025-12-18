@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fullapp.entities.Computer;
@@ -24,10 +25,20 @@ import com.fullapp.utilities.RecordNotFoundException;
 public class ComputerAPI {
 	@Autowired
 	private ComputerService cservice;
-   @GetMapping
-   public List<Computer> getComputers() {
-	   return cservice.getComputers();
-   }
+	   @GetMapping
+	   public List<Computer> getComputers(
+	@RequestParam(required = false)Integer min,
+	@RequestParam(required=false) Integer max) {
+		   
+		   if(min==null && max==null)
+		   return cservice.getComputers();
+		   else if(min==null)
+		   return cservice.getComputers(0,max);
+		   else if(max==null)
+		   return cservice.getComputers(min,Integer.MAX_VALUE);
+		   else
+		   return cservice.getComputers(min,max);
+	   }
    
    @GetMapping("/{cno}")
    public ResponseEntity<Object> getComputer(@PathVariable Integer cno) throws
@@ -60,7 +71,10 @@ public class ComputerAPI {
    }
 }
 
-
+/* @GetMapping
+public List<Computer> getComputers() {
+	   return cservice.getComputers();
+}*/
 /*
 @PostMapping
 public ResponseEntity<Object> addComputer(@RequestBody Computer computer)

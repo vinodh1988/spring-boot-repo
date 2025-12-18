@@ -20,6 +20,10 @@ public class ComputerService {
 		return crepo.findAll();
 	}
 	
+	public List<Computer> getComputers(Integer min,Integer max){
+		return crepo.getComputersPriceRange(min, max);
+	}
+	
 	public Computer getComputer(int cno) throws RecordNotFoundException {
 		Computer computer = crepo.findByCno(cno);
 		if(computer==null)
